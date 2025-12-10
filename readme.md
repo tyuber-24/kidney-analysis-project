@@ -1,4 +1,4 @@
-# Untitled
+# Final Wrangle 
 
 
 Importing all the neccessary packages to run the below code
@@ -26,6 +26,8 @@ kidney = pd.read_csv('C:/Users/tyube/Downloads/kidney_dataset.csv')
 Doing this code to split the variables up into numerical columns which
 is what I want to work with.
 
+## Subsetting numericals 
+
 ``` python
 numeric_cols = kidney.select_dtypes(include=[np.number]).columns.tolist()
 numeric_cols = [c for c in numeric_cols if c != "Diabetes"]
@@ -50,18 +52,7 @@ group_means = kidney.groupby("Diabetes")[numeric_cols].mean().T
 group_means
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+
 
 | Diabetes         | 0           | 1           |
 |------------------|-------------|-------------|
@@ -76,6 +67,8 @@ group_means
 | CKD_Status       | 0.263173    | 0.262585    |
 
 </div>
+
+## Visualizations
 
 I visualized this in a heatmap becasue I like the colors and it is a
 good way to visualize them next to eachother.
@@ -103,6 +96,9 @@ plt.show()
 
 ![](Final_Wrangle_files/figure-commonmark/cell-7-output-1.png)
 
+
+### Predictive model for diabetes Diagnosis
+
 I brought in a bit of the machine learning class and wanetd to run a
 model to see how well certain variables predicted diabetes.
 
@@ -117,18 +113,6 @@ X = pd.get_dummies(X, drop_first=True)
 X.head()
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 
 |  | Creatinine | BUN | GFR | Urine_Output | Hypertension | Age | Protein_in_Urine | Water_Intake | CKD_Status | Medication_ARB | Medication_Diuretic |
 |----|----|----|----|----|----|----|----|----|----|----|----|
